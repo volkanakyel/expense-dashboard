@@ -7,6 +7,9 @@ export default {
   ],
   theme: {
     extend: {
+      maxWidth: {
+        "xs-card": "180px",
+      },
       colors: {
         white: "#ffffff",
         black: "#151718",
@@ -23,6 +26,8 @@ export default {
           300: "#747475",
           400: "#CFCFCF",
           500: "#444444",
+          600: "#DCDCDC",
+          700: "#848484",
         },
       },
     },
