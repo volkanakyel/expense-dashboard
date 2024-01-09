@@ -30,21 +30,29 @@ import IncomeCard from "@/components/IncomeCard.vue";
           <div class="my-7 flex gap-4 items-center">
             <IncomeCard v-for="index in 3" :key="index" />
           </div>
-          <div class="text-grey-700 max-w-sm">
-            <div class="flex justify-between mb-2">
-              <h2>Transactions | upcoming bills</h2>
-              <p class="text-underline">View all</p>
+          <div
+            class="text-grey-700 max-w-sm border-gray-500 bg-white p-6 rounded-md"
+          >
+            <div class="flex justify-between mb-4">
+              <h2>
+                <span class="text-black font-bold text-xl">Transactions</span> |
+                Upcoming bills
+              </h2>
+              <p class="underline">View all</p>
             </div>
-            <div>
+
+            <div class="flex justify-between items-center gap-6">
               <div class="flex gap-6">
                 <img
                   class="border border-gray-400 p-3 rounded-md"
                   src="./assets/icons/netflix.png"
                   alt=""
                 />
-                <p>Apr 05 2023 at 21:46</p>
+                <div>
+                  <p>Netflix</p>
+                  <p>Apr 05 2023 at 21:46</p>
+                </div>
               </div>
-              <p>Netflix</p>
               <p class="text-red">-$15.49</p>
             </div>
           </div>

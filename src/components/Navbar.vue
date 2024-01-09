@@ -40,7 +40,7 @@
       />
     </div>
     <!-- end of input navbar -->
-    <div class="flex items-center justify-center gap-6">
+    <div class="flex items-center justify-center gap-4">
       <img
         class="border border-grey-200 rounded-full p-2"
         src="../assets/icons/notification.svg"
