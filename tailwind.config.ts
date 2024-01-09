@@ -16,6 +16,7 @@ export default {
         green: "#3DD26A",
         red: "#F00",
         purple: "#4A00D5",
+        pinky: "#758BFD",
         dark: {
           100: "#0E0E0E",
           200: "#101010",
