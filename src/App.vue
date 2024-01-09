@@ -32,7 +32,7 @@ import ExpenseItem from "@/components/ExpenseItem.vue";
             <IncomeCard v-for="index in 3" :key="index" />
           </div>
           <div
-            class="text-grey-700 max-w-sm border-gray-500 bg-white p-6 rounded-md"
+            class="text-grey-700 max-w-sm border-gray-500 bg-white p-6 rounded-md mb-4"
           >
             <div class="flex justify-between mb-4">
               <h2>
@@ -48,6 +48,22 @@ import ExpenseItem from "@/components/ExpenseItem.vue";
             <ExpenseItem />
           </div>
           <!-- end income card  -->
+          <!-- start weather widget -->
+          <div
+            class="text-grey-700 max-w-sm border-gray-500 bg-white p-6 rounded-md mb-10"
+          >
+            <h2 class="text-black font-bold text-xl mb-2">Weather forecast</h2>
+            <div class="bg-pinky rounded-6 text-white max-w-xs p-4 rounded-lg">
+              <div class="flex justify-between items-center">
+                <div>
+                  <p class="text-xl">24</p>
+                  <p class="text-lg">California</p>
+                </div>
+                <img src="./assets/icons/cloudly.svg" alt="" />
+              </div>
+            </div>
+          </div>
+          <!-- end weather widget -->
         </main>
       </div>
     </div>
