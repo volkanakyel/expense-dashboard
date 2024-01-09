@@ -2,6 +2,7 @@
 import Sidebar from "@/components/Sidebar.vue";
 import Navbar from "@/components/Navbar.vue";
 import IncomeCard from "@/components/IncomeCard.vue";
+import ExpenseItem from "@/components/ExpenseItem.vue";
 </script>
 
 <template>
@@ -41,20 +42,10 @@ import IncomeCard from "@/components/IncomeCard.vue";
               <p class="underline">View all</p>
             </div>
 
-            <div class="flex justify-between items-center gap-6">
-              <div class="flex gap-6">
-                <img
-                  class="border border-gray-400 p-3 rounded-md"
-                  src="./assets/icons/netflix.png"
-                  alt=""
-                />
-                <div>
-                  <p>Netflix</p>
-                  <p>Apr 05 2023 at 21:46</p>
-                </div>
-              </div>
-              <p class="text-red">-$15.49</p>
-            </div>
+            <ExpenseItem />
+            <ExpenseItem />
+            <ExpenseItem />
+            <ExpenseItem />
           </div>
           <!-- end income card  -->
         </main>
