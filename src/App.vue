@@ -9,9 +9,8 @@ const restaurants = ref([]);
 
 onMounted(async () => {
   try {
-    const response = await fetch(
-      "https://api.spoonacular.com/food/restaurants/search?cuisine=italian&lat=34.7786357&lng=-122.3918135"
-    );
+    const response = await fetch();
+    //https://api.spoonacular.com/food/products/search?query=yogurt&apiKey=API-KEY
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
