@@ -3,6 +3,25 @@ import Sidebar from "@/components/Sidebar.vue";
 import Navbar from "@/components/Navbar.vue";
 import IncomeCard from "@/components/IncomeCard.vue";
 import ExpenseItem from "@/components/ExpenseItem.vue";
+import { ref, onMounted } from "vue";
+
+const restaurants = ref([]);
+
+onMounted(async () => {
+  try {
+    const response = await fetch(
+      "https://api.spoonacular.com/food/restaurants/search?cuisine=italian&lat=34.7786357&lng=-122.3918135"
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    restaurants.value = data.restaurants || [];
+    console.log(restaurants.value);
+  } catch (error) {
+    console.error("Fetch error:", error.message);
+  }
+});
 </script>
 
 <template>
@@ -64,6 +83,13 @@ import ExpenseItem from "@/components/ExpenseItem.vue";
             </div>
           </div>
           <!-- end weather widget -->
+          <!-- start currency converter -->
+          <div class="max-w-sm bg-white p-6 rounded-md mb-10">
+            <h2 class="text-black font-bold text-xl mb-2">
+              Currency converter
+            </h2>
+          </div>
+          <!-- end currency converter -->
         </main>
       </div>
     </div>

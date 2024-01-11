@@ -13,4 +13,21 @@ export default defineConfig({
       ),
     },
   },
+  server: {
+    proxy: {
+      "/api": {
+        target: "https://api.spoonacular.com",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+        configure: (proxy, options) => {
+          proxy.on("proxyReq", (proxyReq, req, res) => {
+            const apiKey = `apiKey=${process.env.VITE_APP_SPOONACULAR_API_KEY}`;
+            const delimiter = proxyReq.path.includes("?") ? "&" : "?";
+            proxyReq.path += delimiter + apiKey;
+            console.log("Requesting:", proxyReq.path); // Log the final request path
+          });
+        },
+      },
+    },
+  },
 });
