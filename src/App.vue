@@ -1,26 +1,39 @@
-<script setup lang="ts">
+<script setup>
 import Sidebar from "@/components/Sidebar.vue";
 import Navbar from "@/components/Navbar.vue";
 import IncomeCard from "@/components/IncomeCard.vue";
 import ExpenseItem from "@/components/ExpenseItem.vue";
+import { useGeolocation } from "./composables/useGeolocation";
 import { ref, onMounted } from "vue";
-
 const restaurants = ref([]);
+const geoError = ref(null);
 
 onMounted(async () => {
+  const { coords, error } = await useGeolocation();
+  geoError.value = error;
+
+  if (coords.latitude !== null && coords.longitude !== null) {
+    await fetchRestaurants(coords.latitude, coords.longitude);
+  }
+});
+
+async function fetchRestaurants(latitude, longitude) {
+  const googleApiKey = import.meta.env.VITE_GOOGLE_PLACE_API;
+  const url = `/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=5000&type=restaurant&rankby=prominence&key=${googleApiKey}`;
+
   try {
-    const response = await fetch();
-    //https://api.spoonacular.com/food/products/search?query=yogurt&apiKey=API-KEY
+    const response = await fetch(url);
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      throw new Error("Error fetching restaurants");
     }
     const data = await response.json();
-    restaurants.value = data.restaurants || [];
+    restaurants.value = data.results;
+    restaurants.value = data.results.slice(0, 5);
     console.log(restaurants.value);
   } catch (error) {
     console.error("Fetch error:", error.message);
   }
-});
+}
 </script>
 
 <template>
@@ -89,6 +102,28 @@ onMounted(async () => {
             </h2>
           </div>
           <!-- end currency converter -->
+          <div class="max-w-sm bg-white p-6 rounded-md mb-10">
+            <h2 class="text-black font-bold text-xl mb-2">Restaurant Nearby</h2>
+            <div
+              class="flex justify-between items-center gap-6 mb-3 border-b-2 py-3"
+              v-for="(restaurant, index) in restaurants"
+              :key="index"
+            >
+              <div class="flex gap-6">
+                <img
+                  class="border border-gray-400 p-3 rounded-md"
+                  src="./assets/icons/icon-restaurant.png"
+                  alt=""
+                />
+                <div>
+                  <p class="text-black">{{ restaurant.name }}</p>
+                  <p v-if="restaurant.opening_hours" class="text-green">Open</p>
+                  <p v-else class="text-red">Closed</p>
+                </div>
+              </div>
+              <p class="text-green">Rating : {{ restaurant.rating }}</p>
+            </div>
+          </div>
         </main>
       </div>
     </div>
