@@ -47,6 +47,7 @@ const selectedCurrency = ref("AUD");
 const findCurrency = (code) => {
   return currenciesList.value.find((currency) => currency.code === code) || {};
 };
+const showPaymentModal = ref(true);
 const getCurrencyList = async () => {
   const apiKey = import.meta.env.VITE_CURRENCY_API;
   const url = `https://api.freecurrencyapi.com/v1/currencies?apikey=${apiKey}&currencies=`;
@@ -110,6 +111,7 @@ async function fetchRestaurants(latitude, longitude) {
             </div>
             <div class="flex justify-center items-center gap-3">
               <button
+                @click="showPaymentModal = true"
                 class="bg-black text-white flex items-center gap-2 px-3 py-2 rounded-md"
               >
                 Add Payment
