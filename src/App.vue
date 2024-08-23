@@ -4,6 +4,8 @@ import Navbar from "@/components/Navbar.vue";
 import IncomeCard from "@/components/IncomeCard.vue";
 import ExpenseItem from "@/components/ExpenseItem.vue";
 import CurrencyConverter from "@/components/CurrencyConverter.vue";
+import TodoList from "@/components/TodoList.vue";
+
 import { useGeolocation } from "./composables/useGeolocation";
 import { ref, onMounted } from "vue";
 const restaurants = ref([]);
@@ -206,6 +208,9 @@ async function fetchRestaurants(latitude, longitude) {
               </div>
               <p class="text-green">Rating : {{ restaurant.rating }}</p>
             </div>
+          </div>
+          <div class="mt-32 mb-32 text-black">
+            <TodoList />
           </div>
         </main>
       </div>
